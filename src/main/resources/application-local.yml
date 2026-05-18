@@ -1,0 +1,43 @@
+# Configuration pour l'environnement local (development)
+server:
+  port: 8081
+
+spring:
+  application:
+    name: portail-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5437/db_apps
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+  # ============================================================
+  # SECURITY : Auth0 Resource Server (JWT validation via JWKS)
+  # Remplacer YOUR_AUTH0_DOMAIN par le domain Auth0 (ex: dev-xxx.us.auth0.com)
+  # ============================================================
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://${AUTH0_DOMAIN:dev-apo1b1r4r1wlutqy.us.auth0.com}/
+          audiences: ${AUTH0_AUDIENCE:https://portail-sdfullstackdev-api}
+
+# Propriétés custom portail-auth
+portail:
+  security:
+    auth-enabled: false
+  auth:
+    audience: ${AUTH0_AUDIENCE:https://portail-sdfullstackdev-api}
+
+logging:
+  level:
+    '[ca.sd.portail]': DEBUG
+    '[org.springframework.security]': DEBUG
+    root: INFO

@@ -1,0 +1,46 @@
+# Configuration pour l'environnement container
+server:
+  port: 8080
+
+spring:
+  application:
+    name: portail-backend
+
+  datasource:
+    url: jdbc:postgresql://portail-postgres:5432/db_apps
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+  # Configuration pour l'environnement container
+  # (identique à l'environnement local pour éviter un démarrage planté
+  # lorsque les variables Auth0 ne sont pas fournies)
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://${AUTH0_DOMAIN:dev-apo1b1r4r1wlutqy.us.auth0.com}/
+          audiences: ${AUTH0_AUDIENCE:https://portail-sdfullstackdev-api}
+
+# Propriétés custom portail-auth
+portail:
+  security:
+    auth-enabled: false
+  auth:
+    audience: ${AUTH0_AUDIENCE:https://portail-sdfullstackdev-api}
+
+  ai:
+    ollama:
+      base-url: http://host.docker.internal:11434
+
+logging:
+  level:
+    '[ca.sd.portail]': INFO
+    root: INFO
