@@ -1,7 +1,6 @@
 package ca.sd.portail.dto;
 
 import java.util.List;
-import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * DTO pour les données de thème exposées via les APIs REST

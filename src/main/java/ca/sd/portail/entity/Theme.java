@@ -3,7 +3,6 @@ package ca.sd.portail.entity;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import java.util.Set;
-import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Entité JPA représentant un thème UI
