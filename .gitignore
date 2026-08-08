@@ -83,3 +83,5 @@ Thumbs.db
 *.backup
 *.bak
 *.tmp
+# Graphify knowledge graph output
+graphify-out/
