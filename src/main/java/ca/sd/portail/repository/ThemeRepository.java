@@ -27,8 +27,8 @@ public interface ThemeRepository extends JpaRepository<Theme, Long> {
 
     /**
      * Recherche les thèmes actifs avec leurs types et traductions
-     * Triés par ordre croissant sur la colonne `name`
+     * Triés par ordre croissant sur l'index explicite du catalogue.
      */
-    @Query("SELECT t FROM Theme t LEFT JOIN FETCH t.themeType LEFT JOIN FETCH t.translations WHERE t.status = :status ORDER BY t.name ASC")
+    @Query("SELECT t FROM Theme t LEFT JOIN FETCH t.themeType LEFT JOIN FETCH t.translations WHERE t.status = :status ORDER BY t.orderIndex ASC, t.name ASC")
     List<Theme> findActiveThemesWithDetails(String status);
 }
